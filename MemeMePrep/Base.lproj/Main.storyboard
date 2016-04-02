@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-He-c7f">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-He-c7f">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="559"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Q0r-sm-a2m">
@@ -41,16 +41,24 @@
                                     </toolbar>
                                 </subviews>
                             </stackView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="98q-la-yWK">
-                                <rect key="frame" x="20" y="402" width="560" height="30"/>
+                            <textField clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="98q-la-yWK">
+                                <rect key="frame" x="20" y="518" width="560" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="erb-OG-mLL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                 <connections>
                                     <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6k-Tu-N7s"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eTS-dW-XjN">
-                                <rect key="frame" x="20" y="65" width="560" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eTS-dW-XjN">
+                                <rect key="frame" x="20" y="20" width="560" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="fdD-aN-MFR"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                 <connections>
@@ -60,16 +68,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="K8h-He-c7f" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="3sR-A7-nh6"/>
-                            <constraint firstItem="Q0r-sm-a2m" firstAttribute="top" secondItem="K8h-He-c7f" secondAttribute="bottom" constant="132" id="5mh-jK-nRR"/>
+                            <constraint firstItem="eTS-dW-XjN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0xv-rF-2jT"/>
+                            <constraint firstItem="eTS-dW-XjN" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="4f5-71-cvo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Q0r-sm-a2m" secondAttribute="bottom" id="Hbz-J3-Vo0"/>
-                            <constraint firstItem="98q-la-yWK" firstAttribute="top" secondItem="K8h-He-c7f" secondAttribute="bottom" constant="-157" id="c7i-Ye-np5"/>
-                            <constraint firstItem="K8h-He-c7f" firstAttribute="top" secondItem="eTS-dW-XjN" secondAttribute="bottom" constant="-95" id="eDY-bf-D2V"/>
+                            <constraint firstItem="eTS-dW-XjN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="IgS-LD-evy"/>
+                            <constraint firstItem="K8h-He-c7f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="QVd-VA-VbO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="K8h-He-c7f" secondAttribute="trailing" constant="-20" id="Siw-yL-e08"/>
+                            <constraint firstItem="K8h-He-c7f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="V2X-pD-U5k"/>
+                            <constraint firstItem="eTS-dW-XjN" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="YyH-Sj-cOf"/>
+                            <constraint firstItem="98q-la-yWK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eIG-DA-cM3"/>
+                            <constraint firstItem="98q-la-yWK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="etC-ft-lka"/>
                             <constraint firstItem="Q0r-sm-a2m" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" constant="20" id="i5A-CM-Jgw"/>
+                            <constraint firstItem="Q0r-sm-a2m" firstAttribute="top" secondItem="98q-la-yWK" secondAttribute="bottom" constant="8" id="ibh-ly-Bqe"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="K8h-He-c7f" secondAttribute="bottom" constant="41" id="ks3-5d-gTJ"/>
                             <constraint firstItem="Q0r-sm-a2m" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="mBZ-1a-G1u"/>
-                            <constraint firstItem="eTS-dW-XjN" firstAttribute="centerX" secondItem="K8h-He-c7f" secondAttribute="centerX" id="pDi-2X-P9B"/>
-                            <constraint firstItem="K8h-He-c7f" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rg7-Ic-ZaQ"/>
-                            <constraint firstItem="98q-la-yWK" firstAttribute="centerX" secondItem="K8h-He-c7f" secondAttribute="centerX" id="xp5-mm-aXE"/>
+                            <constraint firstItem="98q-la-yWK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="tMY-e7-ouQ"/>
+                            <constraint firstItem="K8h-He-c7f" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="tfN-Xm-3PB"/>
                         </constraints>
                     </view>
                     <connections>
@@ -81,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="99" y="32"/>
+            <point key="canvasLocation" x="368" y="-481"/>
         </scene>
     </scenes>
 </document>

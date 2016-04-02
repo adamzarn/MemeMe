@@ -16,7 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
-    let memeTextAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(),NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,NSStrokeWidthAttributeName: 3.0]
+    let memeTextAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(),NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,NSStrokeWidthAttributeName: 3.0,NSBackgroundColorAttributeName: UIColor.clearColor()]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.defaultTextAttributes = memeTextAttributes
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
+        
+        //let backColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
+        //topTextField.backgroundColor = backColor
+        //bottomTextField.backgroundColor = backColor
+        
+        //let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
+        //topTextField.textColor = textColor
+        //bottomTextField.backgroundColor = backColor
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -120,6 +129,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         textField.resignFirstResponder()
         return true
+    }
+    func save() {
+        
     }
 }
 
