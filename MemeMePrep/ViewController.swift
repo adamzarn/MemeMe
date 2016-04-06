@@ -12,32 +12,52 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
+    @IBOutlet weak var shareMemeButton: UIBarButtonItem! {
+        didSet {
+            shareMemeButton?.enabled = isSharingEnabled()
+        }
+    }
     
-    let memeTextAttributes = [NSStrokeColorAttributeName: UIColor.blackColor(),NSForegroundColorAttributeName:UIColor.whiteColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,NSStrokeWidthAttributeName: 3.0,NSBackgroundColorAttributeName: UIColor.clearColor()]
+    var meme: Meme? {
+        didSet {
+            shareMemeButton?.enabled = isSharingEnabled()
+        }
+    }
+    
+    @IBAction func shareMeme(sender: UIBarButtonItem) {
+        let memedImage = generateMemedImage()
+        let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
+        activityController.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
+            if completed {
+                self.save()
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+        }
+        self.presentViewController(activityController, animated: true, completion: nil)
+    }
+    
+    let memeTextAttributes = [
+        NSStrokeColorAttributeName: UIColor.blackColor(),
+        NSForegroundColorAttributeName:UIColor.whiteColor(),
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName: CGFloat(-3.0)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = "TOP"
         topTextField.textAlignment = .Center
         bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .Center
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
-        
-        //let backColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0)
-        //topTextField.backgroundColor = backColor
-        //bottomTextField.backgroundColor = backColor
-        
-        //let textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0)
-        //topTextField.textColor = textColor
-        //bottomTextField.backgroundColor = backColor
-        
+        shareMemeButton?.enabled = isSharingEnabled()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -115,7 +135,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {// called when 'return' key pressed. return NO to ignore.
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
         if topTextField.editing {
             if textField.text == "" {
                 textField.text = "TOP"
@@ -130,9 +150,39 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField.resignFirstResponder()
         return true
     }
-    func save() {
-        
+    
+    private func isSharingEnabled() -> Bool {
+        return meme != nil
     }
+    
+    private func save() {
+    if let meme = self.meme {
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        if let index = appDelegate.memes.indexOf(meme) {
+            appDelegate.memes.replaceRange(index...index, with: [meme])
+        } else {
+            appDelegate.memes.append(meme)
+        }
+    }
+    }
+
+    func generateMemedImage() -> UIImage {
+        toolBar.hidden = true
+        navBar.hidden = true
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawViewHierarchyInRect(self.view.frame,
+            afterScreenUpdates: true)
+        let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        toolBar.hidden = false
+        navBar.hidden = false
+        
+        return memedImage
+    }
+    
 }
 
 

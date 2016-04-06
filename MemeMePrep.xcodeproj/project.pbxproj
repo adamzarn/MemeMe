@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DBA5FD601CB0353300305593 /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA5FD5F1CB0353300305593 /* Meme.swift */; };
 		DBC027011CAC0471003BE2CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC027001CAC0471003BE2CF /* AppDelegate.swift */; };
 		DBC027031CAC0471003BE2CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC027021CAC0471003BE2CF /* ViewController.swift */; };
 		DBC027061CAC0471003BE2CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBC027041CAC0471003BE2CF /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DBA5FD5F1CB0353300305593 /* Meme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
 		DBC026FD1CAC0471003BE2CF /* MemeMePrep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMePrep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBC027001CAC0471003BE2CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBC027021CAC0471003BE2CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				DBC027071CAC0471003BE2CF /* Assets.xcassets */,
 				DBC027091CAC0471003BE2CF /* LaunchScreen.storyboard */,
 				DBC0270C1CAC0471003BE2CF /* Info.plist */,
+				DBA5FD5F1CB0353300305593 /* Meme.swift */,
 			);
 			path = MemeMePrep;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA5FD601CB0353300305593 /* Meme.swift in Sources */,
 				DBC027031CAC0471003BE2CF /* ViewController.swift in Sources */,
 				DBC027011CAC0471003BE2CF /* AppDelegate.swift in Sources */,
 			);
@@ -487,6 +491,7 @@
 				DBC027271CAC0471003BE2CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBC027281CAC0471003BE2CF /* Build configuration list for PBXNativeTarget "MemeMePrepTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +500,7 @@
 				DBC0272A1CAC0471003BE2CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DBC0272B1CAC0471003BE2CF /* Build configuration list for PBXNativeTarget "MemeMePrepUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +509,7 @@
 				DBC0272D1CAC0471003BE2CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
