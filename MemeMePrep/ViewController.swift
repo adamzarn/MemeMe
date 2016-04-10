@@ -16,19 +16,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
-    @IBOutlet weak var shareMemeButton: UIBarButtonItem! {
-        didSet {
-            shareMemeButton?.enabled = isSharingEnabled()
-        }
-    }
+    @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     
-    var meme: Meme? {
-        didSet {
-            shareMemeButton?.enabled = isSharingEnabled()
-        }
-    }
+    
+    var meme: Meme?
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {
+        
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
@@ -57,7 +51,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomTextField.textAlignment = .Center
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
-        shareMemeButton?.enabled = isSharingEnabled()
+        shareMemeButton.enabled = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -116,6 +110,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
+        shareMemeButton.enabled = true
     }
     
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
@@ -123,6 +118,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(pickerController, animated: true, completion: nil)
+        shareMemeButton.enabled = true
     }
     
     @IBAction func textFieldDidBeginEditing(textField: UITextField) {
@@ -149,10 +145,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         textField.resignFirstResponder()
         return true
-    }
-    
-    private func isSharingEnabled() -> Bool {
-        return meme != nil
     }
     
     private func save() {
