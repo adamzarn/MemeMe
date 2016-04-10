@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
@@ -18,11 +19,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     
+    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
+        imagePickerView.image = nil
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        shareMemeButton.enabled = false
+        cancelButton.enabled = false
+        cancelButton.title = ""
+    }
     
     var meme: Meme?
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {
-        
         let memedImage = generateMemedImage()
         let activityController = UIActivityViewController(activityItems: [memedImage], applicationActivities: nil)
         activityController.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
@@ -42,7 +50,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
         topTextField.text = "TOP"
@@ -52,6 +59,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
         shareMemeButton.enabled = false
+        cancelButton.enabled = false
+        cancelButton.title = ""
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -92,12 +101,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func imagePickerController(picker: UIImagePickerController,didFinishPickingMediaWithInfo info:[String : AnyObject]) {
-        
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.contentMode = .ScaleAspectFit
             imagePickerView.image = pickedImage
         }
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -111,6 +118,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
         shareMemeButton.enabled = true
+        cancelButton.enabled = true
+        cancelButton.title = "Cancel"
     }
     
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
@@ -119,6 +128,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickerController.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(pickerController, animated: true, completion: nil)
         shareMemeButton.enabled = true
+        cancelButton.enabled = true
+        cancelButton.title = "Cancel"
     }
     
     @IBAction func textFieldDidBeginEditing(textField: UITextField) {
@@ -142,36 +153,33 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 textField.text = "BOTTOM"
             }
         }
-        
         textField.resignFirstResponder()
         return true
     }
     
     private func save() {
-    if let meme = self.meme {
-        let object = UIApplication.sharedApplication().delegate
-        let appDelegate = object as! AppDelegate
-        if let index = appDelegate.memes.indexOf(meme) {
-            appDelegate.memes.replaceRange(index...index, with: [meme])
-        } else {
-            appDelegate.memes.append(meme)
+    //Found github repository that presented this method for storing the memed images.
+        if let meme = self.meme {
+            let object = UIApplication.sharedApplication().delegate
+            let appDelegate = object as! AppDelegate
+            if let index = appDelegate.memes.indexOf(meme) {
+                appDelegate.memes.replaceRange(index...index, with: [meme])
+            } else {
+                appDelegate.memes.append(meme)
+            }
         }
-    }
     }
 
     func generateMemedImage() -> UIImage {
         toolBar.hidden = true
         navBar.hidden = true
-        // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawViewHierarchyInRect(self.view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         toolBar.hidden = false
         navBar.hidden = false
-        
         return memedImage
     }
     

@@ -100,12 +100,12 @@
 			isa = PBXGroup;
 			children = (
 				DBC027001CAC0471003BE2CF /* AppDelegate.swift */,
+				DBA5FD5F1CB0353300305593 /* Meme.swift */,
 				DBC027021CAC0471003BE2CF /* ViewController.swift */,
 				DBC027041CAC0471003BE2CF /* Main.storyboard */,
 				DBC027071CAC0471003BE2CF /* Assets.xcassets */,
 				DBC027091CAC0471003BE2CF /* LaunchScreen.storyboard */,
 				DBC0270C1CAC0471003BE2CF /* Info.plist */,
-				DBA5FD5F1CB0353300305593 /* Meme.swift */,
 			);
 			path = MemeMePrep;
 			sourceTree = "<group>";
