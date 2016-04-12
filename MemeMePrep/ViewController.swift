@@ -9,6 +9,20 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    
+    struct Meme {
+        var topText:String
+        var bottomText:String
+        var image:UIImage
+        var memedImage:UIImage?
+        
+        init(topText: String, bottomText: String, image: UIImage) {
+            self.topText = topText
+            self.bottomText = bottomText
+            self.image = image
+            self.memedImage = image
+        }
+    }
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -19,16 +33,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     
-    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
-        imagePickerView.image = nil
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-        shareMemeButton.enabled = false
-        cancelButton.enabled = false
-        cancelButton.title = ""
+    func setUpView(topText:String,bottomText:String,shareMeme:Bool,cancelButtonEnabled:Bool,cancelButtonTitle:String) {
+        topTextField.text = topText
+        bottomTextField.text = bottomText
+        shareMemeButton.enabled = shareMeme
+        cancelButton.enabled = cancelButtonEnabled
+        cancelButton.title = cancelButtonTitle
     }
     
-    var meme: Meme?
+    @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
+        imagePickerView.image = nil
+        setUpView("TOP",bottomText:"BOTTOM",shareMeme:false,cancelButtonEnabled:false,cancelButtonTitle:"")
+    }
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {
         let memedImage = generateMemedImage()
@@ -52,15 +68,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         topTextField.defaultTextAttributes = memeTextAttributes
         bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.text = "TOP"
+        
         topTextField.textAlignment = .Center
-        bottomTextField.text = "BOTTOM"
         bottomTextField.textAlignment = .Center
+        
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
-        shareMemeButton.enabled = false
-        cancelButton.enabled = false
-        cancelButton.title = ""
+        
+        setUpView("TOP",bottomText:"BOTTOM",shareMeme:false,cancelButtonEnabled:false,cancelButtonTitle:"")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,9 +132,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
         self.presentViewController(pickerController, animated: true, completion: nil)
-        shareMemeButton.enabled = true
-        cancelButton.enabled = true
-        cancelButton.title = "Cancel"
+
+        setUpView("TOP",bottomText:"BOTTOM",shareMeme:true,cancelButtonEnabled:true,cancelButtonTitle:"Cancel")
     }
     
     @IBAction func pickAnImageFromCamera(sender: AnyObject) {
@@ -127,9 +141,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         pickerController.delegate = self
         pickerController.sourceType = UIImagePickerControllerSourceType.Camera
         self.presentViewController(pickerController, animated: true, completion: nil)
-        shareMemeButton.enabled = true
-        cancelButton.enabled = true
-        cancelButton.title = "Cancel"
+
+        setUpView("TOP",bottomText:"BOTTOM",shareMeme:true,cancelButtonEnabled:true,cancelButtonTitle:"Cancel")
     }
     
     @IBAction func textFieldDidBeginEditing(textField: UITextField) {
@@ -158,16 +171,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     private func save() {
-    //Found github repository that presented this method for storing the memed images.
-        if let meme = self.meme {
-            let object = UIApplication.sharedApplication().delegate
-            let appDelegate = object as! AppDelegate
-            if let index = appDelegate.memes.indexOf(meme) {
-                appDelegate.memes.replaceRange(index...index, with: [meme])
-            } else {
-                appDelegate.memes.append(meme)
-            }
-        }
+        var meme = Meme(topText: topTextField.text!,bottomText:bottomTextField.text!,image:imagePickerView.image!)
     }
 
     func generateMemedImage() -> UIImage {
