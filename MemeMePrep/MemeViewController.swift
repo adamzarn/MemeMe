@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeViewController.swift
 //  MemeMePrep
 //
 //  Created by Adam Zarn on 3/30/16.
@@ -8,30 +8,22 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     struct Meme {
         var topText:String
         var bottomText:String
         var image:UIImage
-        var memedImage:UIImage?
-        
-        init(topText: String, bottomText: String, image: UIImage) {
-            self.topText = topText
-            self.bottomText = bottomText
-            self.image = image
-            self.memedImage = image
-        }
     }
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     func setUpView(topText:String,bottomText:String,shareMeme:Bool,cancelButtonEnabled:Bool,cancelButtonTitle:String) {
         topTextField.text = topText
@@ -55,7 +47,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }
-        self.presentViewController(activityController, animated: true, completion: nil)
+        presentViewController(activityController, animated: true, completion: nil)
     }
     
     let memeTextAttributes = [
@@ -83,8 +75,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification,object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)),name: UIKeyboardWillHideNotification,object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification,object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeViewController.keyboardWillHide(_:)),name: UIKeyboardWillHideNotification,object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
@@ -93,13 +85,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.editing {
-            self.view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -1*getKeyboardHeight(notification)
         }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        if self.view.frame.origin.y != 0 {
-            self.view.frame.origin.y += getKeyboardHeight(notification)
+        if view.frame.origin.y != 0 {
+            view.frame.origin.y = 0
         }
     }
     
@@ -130,7 +122,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.sourceType = sourceType
-        self.presentViewController(pickerController, animated: true, completion: nil)
+        presentViewController(pickerController, animated: true, completion: nil)
         setUpView("TOP",bottomText:"BOTTOM",shareMeme:true,cancelButtonEnabled:true,cancelButtonTitle:"Cancel")
     }
 
@@ -173,14 +165,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     func generateMemedImage() -> UIImage {
         toolBar.hidden = true
-        navBar.hidden = true
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawViewHierarchyInRect(self.view.frame,
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawViewHierarchyInRect(view.frame,
             afterScreenUpdates: true)
         let memedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         toolBar.hidden = false
-        navBar.hidden = false
         return memedImage
     }
     
