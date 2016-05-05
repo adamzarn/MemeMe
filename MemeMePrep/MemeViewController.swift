@@ -8,13 +8,13 @@
 
 import UIKit
 
+struct Meme {
+    var topText:String
+    var bottomText:String
+    var image:UIImage
+}
+
 class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-    
-    struct Meme {
-        var topText:String
-        var bottomText:String
-        var image:UIImage
-    }
 
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -160,7 +160,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     private func save() {
-        _ = Meme(topText: topTextField.text!,bottomText:bottomTextField.text!,image:imagePickerView.image!)
+        let meme = Meme(topText: topTextField.text!,bottomText:bottomTextField.text!,image:imagePickerView.image!)
+        let object = UIApplication.sharedApplication().delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
 
     func generateMemedImage() -> UIImage {
