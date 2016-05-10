@@ -12,6 +12,7 @@ struct Meme {
     var topText:String
     var bottomText:String
     var image:UIImage
+    var memedImage:UIImage
 }
 
 class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -34,8 +35,12 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func cancelButtonPressed(sender: UIBarButtonItem) {
+        if imagePickerView.image == nil {
+            self.dismissViewControllerAnimated(true, completion: nil)
+        } else {
+        shareMemeButton.enabled = false
         imagePickerView.image = nil
-        setUpView("TOP",bottomText:"BOTTOM",shareMeme:false,cancelButtonEnabled:false,cancelButtonTitle:"")
+        }
     }
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {
@@ -66,7 +71,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
         
-        setUpView("TOP",bottomText:"BOTTOM",shareMeme:false,cancelButtonEnabled:false,cancelButtonTitle:"")
+        setUpView("TOP",bottomText:"BOTTOM",shareMeme:false,cancelButtonEnabled:true,cancelButtonTitle:"Cancel")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -159,8 +164,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         return true
     }
     
-    private func save() {
-        let meme = Meme(topText: topTextField.text!,bottomText:bottomTextField.text!,image:imagePickerView.image!)
+    func save() {
+        let meme = Meme(topText: topTextField.text!,bottomText:bottomTextField.text!,image:imagePickerView.image!,memedImage:generateMemedImage())
         let object = UIApplication.sharedApplication().delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
