@@ -9,7 +9,7 @@
         <!--Meme Editor-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="memeEditor" id="BYZ-38-t0r" customClass="MemeViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -43,7 +43,7 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="98q-la-yWK">
-                                <rect key="frame" x="20" y="507" width="560" height="17"/>
+                                <rect key="frame" x="20" y="526" width="560" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="erb-OG-mLL"/>
                                 </constraints>
@@ -58,8 +58,8 @@
                                     <action selector="textFieldDidBeginEditing:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6k-Tu-N7s"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBB-A8-cfd">
-                                <rect key="frame" x="20" y="96" width="560" height="17"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xBB-A8-cfd">
+                                <rect key="frame" x="20" y="72" width="560" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="NAb-Th-Uic"/>
                                     <constraint firstAttribute="height" constant="30" id="wDk-1a-baC"/>
@@ -76,16 +76,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xBB-A8-cfd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="0U0-Yd-DV4"/>
+                            <constraint firstItem="xBB-A8-cfd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="0pM-m7-mMK"/>
                             <constraint firstItem="xBB-A8-cfd" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="1AT-iO-3Zw"/>
                             <constraint firstItem="98q-la-yWK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3AH-j2-YFl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K8h-He-c7f" secondAttribute="trailing" constant="-20" id="CFV-QY-576"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AzX-bl-oEX" secondAttribute="bottom" id="DSG-lZ-51T"/>
-                            <constraint firstItem="AzX-bl-oEX" firstAttribute="top" secondItem="98q-la-yWK" secondAttribute="bottom" constant="32" id="GgF-0d-W6J"/>
                             <constraint firstItem="xBB-A8-cfd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GqE-qs-zMX"/>
                             <constraint firstItem="AzX-bl-oEX" firstAttribute="top" secondItem="K8h-He-c7f" secondAttribute="bottom" id="K2l-c3-4Gr"/>
                             <constraint firstItem="xBB-A8-cfd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="MTc-hF-sZm"/>
                             <constraint firstItem="K8h-He-c7f" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="T75-8h-FbR"/>
                             <constraint firstItem="xBB-A8-cfd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Tx4-QL-y0B"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="98q-la-yWK" secondAttribute="bottom" constant="8" id="VZw-mt-Y8q"/>
                             <constraint firstItem="98q-la-yWK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="aZb-Ht-Csb"/>
                             <constraint firstItem="AzX-bl-oEX" firstAttribute="top" secondItem="K8h-He-c7f" secondAttribute="bottom" id="bc6-YM-PCF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="K8h-He-c7f" secondAttribute="trailing" constant="-20" id="byb-u6-em4"/>
@@ -96,15 +98,21 @@
                             <constraint firstItem="K8h-He-c7f" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nZS-dh-Qp9"/>
                             <constraint firstItem="AzX-bl-oEX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="nwf-uQ-5tO"/>
                             <constraint firstItem="AzX-bl-oEX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rnE-0C-Oa9"/>
+                            <constraint firstItem="K8h-He-c7f" firstAttribute="top" secondItem="xBB-A8-cfd" secondAttribute="bottom" constant="-25" id="teo-oi-2eg"/>
                             <constraint firstItem="98q-la-yWK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="xph-Mf-xOE"/>
+                            <constraint firstItem="AzX-bl-oEX" firstAttribute="top" secondItem="98q-la-yWK" secondAttribute="bottom" id="zfx-rU-4Ee"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="byb-u6-em4"/>
                                 <exclude reference="fDX-1P-6uA"/>
+                                <exclude reference="teo-oi-2eg"/>
+                                <exclude reference="0U0-Yd-DV4"/>
                                 <exclude reference="1AT-iO-3Zw"/>
                                 <exclude reference="GqE-qs-zMX"/>
                                 <exclude reference="MTc-hF-sZm"/>
+                                <exclude reference="gPL-7g-0ej"/>
+                                <exclude reference="VZw-mt-Y8q"/>
                                 <exclude reference="bc6-YM-PCF"/>
                             </mask>
                         </variation>
@@ -134,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1960" y="-811"/>
+            <point key="canvasLocation" x="1932" y="-877"/>
         </scene>
         <!--Meme Viewer-->
         <scene sceneID="sKS-12-9J6">
@@ -190,11 +198,7 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meme Viewer" id="hXo-e8-Fm8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Hks-et-Ha7">
-                            <connections>
-                                <action selector="shareMeme:" destination="4wJ-Jt-6lf" id="sCO-r3-QOt"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Hks-et-Ha7"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -203,7 +207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a6N-we-rAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1859" y="-131"/>
+            <point key="canvasLocation" x="1960" y="-130"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gJz-zE-G2F">
@@ -297,7 +301,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="spC-F8-oVC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TQ7-nP-1EL">
                             <connections>
-                                <segue destination="V3r-qz-Cm9" kind="show" id="zPI-Yh-Wbh"/>
+                                <segue destination="BYZ-38-t0r" kind="showDetail" id="QH4-hc-sBL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -432,7 +436,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="Vgy-eb-OS4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2ZY-L7-zgh">
                             <connections>
-                                <segue destination="V3r-qz-Cm9" kind="show" id="9yl-LE-eza"/>
+                                <segue destination="BYZ-38-t0r" kind="showDetail" id="7ex-zn-vQK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -457,8 +461,8 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="AhI-aP-MCq"/>
                         <segue destination="4wJ-Jt-6lf" kind="show" id="Zzg-fp-6CM"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="qs8-rb-pdy"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xqr-LF-jrz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -509,6 +513,6 @@
         <image name="Table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9yl-LE-eza"/>
+        <segue reference="7ex-zn-vQK"/>
     </inferredMetricsTieBreakers>
 </document>

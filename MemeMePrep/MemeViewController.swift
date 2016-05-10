@@ -70,13 +70,20 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         self.topTextField.delegate = self
         self.bottomTextField.delegate = self
-        
         setUpView("TOP",bottomText:"BOTTOM",shareMeme:false,cancelButtonEnabled:true,cancelButtonTitle:"Cancel")
     }
     
     override func viewWillAppear(animated: Bool) {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
+        var controller: ShowMemeViewController
+        controller = self.storyboard?.instantiateViewControllerWithIdentifier("showMeme") as! ShowMemeViewController
+        if controller.comingFromViewer == true {
+            topTextField.text = appDelegate.memes[controller.memedImageIndex].topText
+            bottomTextField.text = appDelegate.memes[controller.memedImageIndex].bottomText
+            imagePickerView.image = appDelegate.memes[controller.memedImageIndex].image
+        }
+        controller.comingFromViewer = false
     }
     
     func subscribeToKeyboardNotifications() {
@@ -141,10 +148,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func textFieldDidBeginEditing(textField: UITextField) {
         textField.becomeFirstResponder()
-        if textField.text == "TOP" {
-            textField.text = ""
-        }
-        if textField.text == "BOTTOM" {
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
             textField.text = ""
         }
     }
