@@ -25,8 +25,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationItem!
-    var memedImageIndex:Int!
-    var comingFromViewer:Bool!
+    var memedImageIndex = 0
+    var comingFromViewer = false
     
     func setUpView(topText:String,bottomText:String,shareMeme:Bool,cancelButtonEnabled:Bool,cancelButtonTitle:String) {
         topTextField.text = topText
@@ -79,14 +79,13 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
         
-        var controller: ShowMemeViewController
-        controller = self.storyboard?.instantiateViewControllerWithIdentifier("showMeme") as! ShowMemeViewController
-        if controller.comingFromViewer == true {
-            topTextField.text = appDelegate.memes[controller.memedImageIndex].topText
-            bottomTextField.text = appDelegate.memes[controller.memedImageIndex].bottomText
-            imagePickerView.image = appDelegate.memes[controller.memedImageIndex].image
+        if comingFromViewer {
+            topTextField.text = appDelegate.memes[memedImageIndex].topText
+            bottomTextField.text = appDelegate.memes[memedImageIndex].bottomText
+            imagePickerView.image = appDelegate.memes[memedImageIndex].image
+            shareMemeButton.enabled = true
         }
-        controller.comingFromViewer = false
+        comingFromViewer = false
     }
     
     func subscribeToKeyboardNotifications() {
