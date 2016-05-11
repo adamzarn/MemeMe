@@ -25,6 +25,8 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var bottomTextField: UITextField!
     @IBOutlet weak var shareMemeButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationItem!
+    var memedImageIndex:Int!
+    var comingFromViewer:Bool!
     
     func setUpView(topText:String,bottomText:String,shareMeme:Bool,cancelButtonEnabled:Bool,cancelButtonTitle:String) {
         topTextField.text = topText
@@ -76,6 +78,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewWillAppear(animated: Bool) {
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         subscribeToKeyboardNotifications()
+        
         var controller: ShowMemeViewController
         controller = self.storyboard?.instantiateViewControllerWithIdentifier("showMeme") as! ShowMemeViewController
         if controller.comingFromViewer == true {

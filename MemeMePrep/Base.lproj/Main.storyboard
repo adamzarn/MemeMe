@@ -21,7 +21,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K8h-He-c7f">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AzX-bl-oEX">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AzX-bl-oEX">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="yyP-1W-5v0"/>
@@ -112,8 +112,8 @@
                                 <exclude reference="GqE-qs-zMX"/>
                                 <exclude reference="MTc-hF-sZm"/>
                                 <exclude reference="gPL-7g-0ej"/>
-                                <exclude reference="VZw-mt-Y8q"/>
                                 <exclude reference="bc6-YM-PCF"/>
+                                <exclude reference="VZw-mt-Y8q"/>
                             </mask>
                         </variation>
                     </view>
@@ -198,10 +198,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Meme Viewer" id="hXo-e8-Fm8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Hks-et-Ha7"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Hks-et-Ha7">
+                            <connections>
+                                <action selector="editButtonPressed" destination="4wJ-Jt-6lf" id="xPd-ce-bTp"/>
+                                <segue destination="V3r-qz-Cm9" kind="show" identifier="edit" id="fvY-f6-pB4"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="editButton" destination="Hks-et-Ha7" id="Khm-cX-hf7"/>
                         <outlet property="showMemeView" destination="5GV-2F-b2U" id="AQV-A6-piM"/>
                     </connections>
                 </viewController>
@@ -301,7 +307,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="spC-F8-oVC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TQ7-nP-1EL">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="showDetail" id="QH4-hc-sBL"/>
+                                <segue destination="V3r-qz-Cm9" kind="show" id="Ngf-WZ-I0m"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -436,7 +442,7 @@
                     <navigationItem key="navigationItem" title="Sent Memes" id="Vgy-eb-OS4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2ZY-L7-zgh">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="showDetail" id="7ex-zn-vQK"/>
+                                <segue destination="V3r-qz-Cm9" kind="show" id="CAb-6I-A6s"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -513,6 +519,6 @@
         <image name="Table" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7ex-zn-vQK"/>
+        <segue reference="fvY-f6-pB4"/>
     </inferredMetricsTieBreakers>
 </document>
